@@ -56,7 +56,7 @@ class Data extends Component {
             ))
             :
             <div>
-              Loading.........
+              Getting Posts.........
             </div>
           }
         </div>

@@ -15,7 +15,7 @@ const Comments = (props) => {
 
   const getComments = async () => {
     setfetching(true);
-    await sleep(2500);
+    await sleep(1500);
     const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`);
     setComments(response.data);
     setfetching(false);
@@ -25,13 +25,11 @@ const Comments = (props) => {
     }
   }
 
-
-  return (
-    <div>
-      {fetching ? <p>Loading Comments</p> : ''}
-      {comments.length ?
+  const showComments = () => {
+    if (comments.length && !fetching) {
+      return (
         comments.map(comment => (
-          <div key={comment.id} style={{background: 'grey', padding: '0 10px', margin: '5px'}}>
+          <div key={comment.id} style={{ background: 'grey', padding: '0 10px', margin: '5px' }}>
             <div>
               <h3>{comment.name}</h3>
               comment by: {comment.email}
@@ -40,9 +38,20 @@ const Comments = (props) => {
             <p>{comment.body}</p>
           </div>
         ))
-        :
-        <div>No Comments</div>
-      }
+      )
+    }
+
+    if (fetching) {
+      return <p>Loading Comments......</p>
+    }
+
+    return <div>No Comments</div>
+  }
+
+
+  return (
+    <div>
+      {showComments()}
     </div>
   )
 }
