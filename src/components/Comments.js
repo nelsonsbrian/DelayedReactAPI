@@ -15,7 +15,7 @@ const Comments = (props) => {
 
   const getComments = async () => {
     setfetching(true);
-    await sleep(1500);
+    await sleep(750);
     const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`);
     setComments(response.data);
     setfetching(false);
@@ -30,11 +30,10 @@ const Comments = (props) => {
       return (
         comments.map(comment => (
           <div key={comment.id} style={{ background: 'grey', padding: '0 10px', margin: '5px' }}>
-            <div>
-              <h3>{comment.name}</h3>
-              comment by: {comment.email}
+            <div >
+              <h5 style={{ display: 'inline' }}>{comment.name}</h5>
+              <p style={{ display: 'inline' }}> comment by: {comment.email}</p>
             </div>
-
             <p>{comment.body}</p>
           </div>
         ))

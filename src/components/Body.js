@@ -5,7 +5,7 @@ import Data from './Data';
 import Post from './Post';
 
 const Body = () => {
-  const [key, setKey] = useState('post');
+  const [key, setKey] = useState('all');
 
 
   const APITabs = () => {
